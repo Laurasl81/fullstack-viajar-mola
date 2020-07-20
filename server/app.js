@@ -11,17 +11,23 @@ const express = require('express')
 const app = express()
 
 // Configs
-require('./configs/preformater.configs')(app)
+require('./configs/preformater.config')(app)
 require('./configs/middleware.config')(app)
 require('./configs/passport.config')(app)
-require('./configs/views.configs')(app)
-require('./configs/local.configs')(app)
+require('./configs/views.config')(app)
+require('./configs/local.config')(app)
 
-const index = require('./routes/index');
-app.use('/', index);
+// Hbs setup
+require('./configs/hbs.config')
 
-const authRoutes = require('./routes/auth');
-app.use('/auth', authRoutes);
+// Routes index
+require('./routes')(app)
+
+// const index = require('./routes/index');
+// app.use('/', index);
+
+// const authRoutes = require('./routes/auth.routes');
+// app.use('/auth', authRoutes);
 
 
 module.exports = app;

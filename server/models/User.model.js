@@ -23,7 +23,7 @@ favorites: {
   type: [Schema.Types.ObjectId],
   ref: 'Viajes'
 },
-reservas: {
+booking: {
   type: [Schema.Types.ObjectId],
   ref: 'Reservas'
 },

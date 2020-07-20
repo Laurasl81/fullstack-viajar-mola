@@ -22,27 +22,26 @@ const viajesSchema = new Schema({
     },
     paradas: {
         type: [String],
-        required: true
     },
-    informacion: { 
-        titulo: {
-            type: String,
-            required: true
-        },
-        galeria: {
-            type: String,
-            default:'',
-            required: true
-        },
-        precioIncluye: {
-            type: String,
-            required: true
-        },
-        descripcion: {
-            type: String,
-            required: true
-        }
-    },
+    // informacion: { 
+    //     titulo: {
+    //         type: String,
+    //         required: true
+    //     },
+    //     galeria: {
+    //         type: String,
+    //         default:'',
+    //         required: true
+    //     },
+    //     precioIncluye: {
+    //         type: String,
+    //         required: true
+    //     },
+    //     descripcion: {
+    //         type: String,
+    //         required: true
+    //     }
+    // },
     tipoViaje: {
         type: String,
         enum: ['single', 'grupos', 'grupo-reducido']
