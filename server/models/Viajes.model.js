@@ -23,31 +23,33 @@ const viajesSchema = new Schema({
     paradas: {
         type: [String],
     },
-    // informacion: { 
-    //     titulo: {
-    //         type: String,
-    //         required: true
-    //     },
-    //     galeria: {
-    //         type: String,
-    //         default:'',
-    //         required: true
-    //     },
-    //     precioIncluye: {
-    //         type: String,
-    //         required: true
-    //     },
-    //     descripcion: {
-    //         type: String,
-    //         required: true
-    //     }
-    // },
+    informacion: { 
+        titulo: {
+            type: String,
+            required: true
+        },
+        galeria: {
+            type: String,
+            default:'',
+            required: true
+        },
+        precioIncluye: {
+            type: String,
+            required: true
+        },
+        descripcion: {
+            type: String,
+            required: true
+        }
+    },
     tipoViaje: {
         type: String,
         enum: ['single', 'grupos', 'grupo-reducido']
     },
     actividadesDestacadas: {
-        type:[String]
+        type:[{foto: {type: String}, titulo: {type: String}, descripcion: {type: String}
+        }],
+      
     },
     informacionPais: {
         type: String

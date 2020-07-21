@@ -30,7 +30,7 @@ booking: {
 role: {
   type: String,
   default: 'cliente',
-  enum: ['admistrador', 'cliente']
+  enum: ['admin', 'cliente']
 }
 
 }, {

@@ -17,6 +17,7 @@ require('./configs/passport.config')(app)
 require('./configs/views.config')(app)
 require('./configs/local.config')(app)
 
+
 // Hbs setup
 require('./configs/hbs.config')
 
