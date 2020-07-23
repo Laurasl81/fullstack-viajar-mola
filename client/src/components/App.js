@@ -4,11 +4,12 @@ import './App.css'
 import AuthService from './../service/AuthService'
 import { Switch, Route } from 'react-router-dom'
 
-import Navigation from './ui/NavBar'
-import Message from './ui/CustomToast'
-import Footer from './ui/Footer'
-
+import Navigation from './pages/ui/Navbar'
+import Message from './pages/ui/CustomToast'
+import Footer from './pages/ui/Footer'
+import Signup from './auth/Signup'
 import Home from './pages/home'
+import Login from './auth/Login'
 
 class App extends Component {
   constructor() {
@@ -46,10 +47,13 @@ class App extends Component {
         <main>
           <Switch>
             <Route exact path="/" render={() => <Home />} />
+            <Route path="/signup" render={props => <Signup {...props} setTheUser={this.setTheUser} handleToast={this.handleToast} />} />
+            <Route path="/login" render={props => <Login {...props} setTheUser={this.setTheUser} handleToast={this.handleToast} />} />
+
 
           </Switch>
-        </main>
         <Footer />
+        </main>
         <Message {...this.state.toast} handleToast={this.handleToast} />
       </>
     )

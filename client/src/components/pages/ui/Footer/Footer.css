@@ -1,0 +1,9 @@
+footer li{
+    list-style: none;
+    text-decoration: none;
+  
+}
+
+.piePagina{
+    background-color: rgb(252, 217, 173);
+}
