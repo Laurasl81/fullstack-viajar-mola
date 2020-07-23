@@ -1,0 +1,10 @@
+.nav-hero{
+  background-color: burlywood;
+}
+.nav-hero a{
+  text-decoration: none;
+  color: inherit;
+}
+.logo{
+  width: 60px;
+}
