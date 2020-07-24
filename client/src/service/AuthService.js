@@ -2,15 +2,15 @@ import axios from 'axios'
 
 export default class AuthService {
 
-    constructor(){
+    constructor() {
 
         this.service = axios.create({
-            baseURL: 'http://localhost:5000/api',
+            baseURL: `${process.env.REACT_APP_API_URL}/auth`,
             withCredentials: true
         })
     }
-    login = credentials => this.service.post('/auth/login', credentials)
-    signup = credentials => this.service.post('/auth/signup', credentials)
-    logout = () => this.service.post('/auth/logout')
-    isLoggedIn = () => this.service.get('/auth/loggedin')
+    login = credentials => this.service.post('/login', credentials)
+    signup = credentials => this.service.post('/signup', credentials)
+    logout = () => this.service.post('/logout')
+    isLoggedIn = () => this.service.get('/loggedin')
 }

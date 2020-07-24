@@ -5,17 +5,19 @@ const logger = require('morgan')
 
 const cors = require('cors')
 
-const whitelist = [process.env.DOMAIN]
-const corsOptions = {
-    origin: (origin, cb) => {
-        const originIsWhitelisted = whitelist.includes(origin)
-        cb(null, originIsWhitelisted)
-    },
-    credentials: true
-}
+module.exports = app => {
 
-// Middleware Setup
-module.exports = app =>{
+
+    const whitelist = ['http://localhost:3000']
+    const corsOptions = {
+        origin: (origin, cb) => {
+            const originIsWhitelisted = whitelist.includes(origin)
+            cb(null, originIsWhitelisted)
+        },
+        credentials: true
+    }
+
+    // Middleware Setup
 
     app.use(logger('dev'))
     app.use(bodyParser.json())

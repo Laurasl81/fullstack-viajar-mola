@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-export default class TravelService {
+export default class TripService {
 
     constructor(){
 
         this.service = axios.create({
-            baseURL: 'http://localhost:5000/api/travels',
+            baseURL: `${process.env.REACT_APP_API_URL}/trip`,
             withCredentials: true
             
         })
@@ -14,7 +14,7 @@ export default class TravelService {
     getAllTravels = () => this.service.get('/getAllTravels')
     getDestination = destino => this.service.get(`/getDestination/${destino}`)
     getOneTravel = id => this.service.get(`/getOneTravel/${id}`)
-    createTravel = travel => this.service.post(`/newTravel`, travel)
+    createTravel = trip => this.service.post(`/newTravel`, trip)
     deleteTravel = id => this.service.delete(`/delete/${id}`)
     editTravel = (id, travel) => this.service.put(`/edit/${id}`, travel)
 }

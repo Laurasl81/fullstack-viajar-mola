@@ -13,7 +13,7 @@ class Signup extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: '',
+            email: '',
             password: ''
         }
         this.authService = new AuthService()
@@ -32,14 +32,17 @@ class Signup extends Component {
             .then(response => {
                 this.props.setTheUser(response.data)
                 this.props.handleToast(true, 'Registro completo')
+                this.props.history.push('/mi-cuenta')
                 
             })
-            .catch(err => console.log(err.response.data.message))  
-    }
+            .catch(err => {
+                this.props.handleToast(true, err.response.data.message)  
+    })
+}
 
     render() {
         return (
-            <Container as="main">
+            <Container>
 
                 <Row>
                     <Col md={{ offset: 3, span: 6 }}>
@@ -48,15 +51,15 @@ class Signup extends Component {
                         <Form onSubmit={this.handleFormSubmit}>
 
                             <Form.Group>
-                                <Form.Label>Nombre de usuario</Form.Label>
-                                <Form.Control onChange={this.handleInputChange} value={this.state.username} name="username" type="text" />
+                                <Form.Label>Correo electrónico</Form.Label>
+                                <Form.Control onChange={this.handleInputChange} value={this.state.email} name="email" type="text" />
                                 <Form.Text className="text-muted">Todo minuscula</Form.Text>
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control onChange={this.handleInputChange} value={this.state.password} name="password" type="password" />
-                                <Form.Text className="text-muted">Minimo cuaro caracteres</Form.Text>
+                                <Form.Text className="text-muted">Minimo cuatro caracteres</Form.Text>
                             </Form.Group>
 
                             <Button variant="dark" type="submit">Registrarme</Button>

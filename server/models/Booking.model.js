@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const reservasSchema = new Schema({
 
     user: [{type: Schema.Types.ObjectId, ref: 'User'}],
-    viaje: [{type: Schema.Types.ObjectId, ref:'Viajes'}]
+    trip: [{type: Schema.Types.ObjectId, ref:'Viajes'}]
 
 }, {
     timestamps: true

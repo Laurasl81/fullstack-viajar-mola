@@ -24,6 +24,7 @@ require('./configs/hbs.config')
 // Routes index
 require('./routes')(app)
 
+
 // const index = require('./routes/index');
 // app.use('/', index);
 

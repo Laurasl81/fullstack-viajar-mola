@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-const viajesSchema = new Schema({
+const tripsSchema = new Schema({
     titulo: {
         type: String,
         required: true
@@ -63,6 +63,6 @@ const viajesSchema = new Schema({
     timestamps: true
 })
 
-const Viajes = mongoose.model("Viaje", viajesSchema)
+const Trips = mongoose.model("Viaje", tripsSchema)
 
-module.exports = Viajes
+module.exports = Trips

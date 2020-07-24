@@ -26,21 +26,26 @@ class Login extends Component {
     }
 
     handleFormSubmit = e => {
+       
         e.preventDefault()
-        this.authService
+        this.AuthService
             .login(this.state)
             .then(response => {
                 this.props.setTheUser(response.data)
                 this.props.handleToast(true, 'Sesión inciada')
+                this.props.history.push('/mi-cuenta')
             })
-            .catch(err => console.log(err.response.data.message))  
+            .catch(err => {
+                this.props.handleToast(true, err.response.data.message)
+            })
     }
 
 
     render() {
+        //console.log('PROPS Login', this.props);
         return (
             <>
-                <Container as="main">
+                <Container>
 
                     <Row>
                         <Col md={{ offset: 3, span: 6 }}>
@@ -48,9 +53,10 @@ class Login extends Component {
 
                             <Form onSubmit={this.handleFormSubmit}>
 
+
                                 <Form.Group>
-                                    <Form.Label>Nombre de usuario</Form.Label>
-                                    <Form.Control onChange={this.handleInputChange} value={this.state.username} name="username" type="text" />
+                                    <Form.Label>Correo electrónico</Form.Label>
+                                    <Form.Control onChange={this.handleInputChange} value={this.state.email} name="email" type="text" />
                                     <Form.Text className="text-muted">Todo minuscula</Form.Text>
                                 </Form.Group>
 

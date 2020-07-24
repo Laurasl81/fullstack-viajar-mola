@@ -14,24 +14,24 @@ router.post('/signup', (req, res, next) => {
 
 
   if (!email || !password) {
-    res.status(400).json({ message: 'Provide email and password' });
+    res.status(400).json({ message: 'Proporcionar correo electronico y contraseña' });
     return;
   }
 
   if (password.length < 2) {
-    res.status(400).json({ message: 'Please make your password at least 8 characters long for security purposes.' });
+    res.status(400).json({ message: 'Por favor por seguridad la contraseña tiene que ser mas larga.' });
     return;
   }
 
   User.findOne({ email }, (err, foundUser) => {
 
     if (err) {
-      res.status(500).json({ message: "email check went bad." });
+      res.status(500).json({ message: "email incorrecto." });
       return;
     }
 
     if (foundUser) {
-      res.status(400).json({ message: 'email taken. Choose another one.' });
+      res.status(400).json({ message: 'Probar con otro email, ese ya esta cogido.' });
       return;
     }
 
@@ -45,7 +45,7 @@ router.post('/signup', (req, res, next) => {
 
     aNewUser.save(err => {
       if (err) {
-        res.status(400).json({ message: 'Saving user to database went wrong.' });
+        res.status(400).json({ message: 'Error al guardar usuario.' });
         return;
       }
 
@@ -54,7 +54,7 @@ router.post('/signup', (req, res, next) => {
       req.login(aNewUser, (err) => {
 
         if (err) {
-          res.status(500).json({ message: 'Login after signup went bad.' });
+          res.status(500).json({ message: 'Error al iniciar sesion despues de registrarse.' });
           return;
         }
 
@@ -72,7 +72,7 @@ router.post('/login', (req, res, next) => {
 
   passport.authenticate('local', (err, theUser, failureDetails) => {
     if (err) {
-      res.status(500).json({ message: 'Something went wrong authenticating user' });
+      res.status(500).json({ message: 'Error al iniciar sesion' });
       return;
     }
 
@@ -86,7 +86,7 @@ router.post('/login', (req, res, next) => {
     // save user in session
     req.login(theUser, (err) => {
       if (err) {
-        res.status(500).json({ message: 'Session save went bad.' });
+        res.status(500).json({ message: 'Error al guardar sesion.' });
         return;
       }
 
@@ -101,7 +101,7 @@ router.post('/login', (req, res, next) => {
 router.post('/logout', (req, res, next) => {
   // req.logout() is defined by passport
   req.logout();
-  res.status(200).json({ message: 'Log out success!' });
+  res.status(200).json({ message: 'Sesion cerrada con exito!' });
 });
 
 
@@ -110,7 +110,7 @@ router.get('/loggedin', (req, res, next) => {
     res.status(200).json(req.user);
     return;
   }
-  res.status(403).json({ message: 'Unauthorized' });
+  res.status(403).json({ message: 'No autorizado' });
 });
 
 module.exports = router

@@ -1,5 +1,6 @@
 .nav-hero{
-  background-color: rgb(252, 217, 173);
+    background-color: #95AAAB;
+  
 }
 .nav-hero a{
   text-decoration: none;
@@ -7,4 +8,13 @@
 }
 .logo{
   width: 60px;
+}
+
+body{
+ background-color: #F5F5F5;
+
+}
+
+.row {
+  padding: 20px;
 }

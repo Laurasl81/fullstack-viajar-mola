@@ -1,9 +1,26 @@
 footer li{
     list-style: none;
-    text-decoration: none;
+    color: white;
   
 }
 
-.piePagina{
-    background-color: rgb(252, 217, 173);
+footer{
+    background-color: #95AAAB;
+    padding: 40px 10px;
+    bottom: 0px;
+    width: 100%;
+    left: 0px;
+    
 }
+
+footer a{
+     text-decoration: none;
+     color: white;
+
+}
+
+footer a:hover{
+color: black;
+text-decoration: none;
+}
+
