@@ -1,23 +1,35 @@
 import React, { Component } from 'react'
-
+import TripService from '../../../service/TripService'
 
 
 class Home extends Component {
-    constructor(props) {        
+    constructor(props) {
         super(props);
-        this.state = { 
-
-         }
+        this.state = {
+            trips: [],
+        }
+        this.TripService = new TripService()
     }
-    render() { 
-        return (  
+
+    componentDidMount = () => this.getAllTrips()
+
+    getAllTrips = () => {
+        this.TripService.getAllTrips()
+            .then(alltrips => this.setState({ trips: alltrips }))
+            .catch(err => console.log(err))
+    }
+
+
+    render() {
+        console.log(this.state.trips);
+        return (
             <>
                 <h1 className="text-center">Home</h1>
-                
+
             </>
         )
     }
 }
- 
+
 export default Home;
 

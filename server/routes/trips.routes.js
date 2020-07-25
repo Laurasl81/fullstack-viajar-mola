@@ -7,7 +7,7 @@ const Trips = require('../models/Trips.model')
 
 // Endpoints
 
-router.get('/getAllTravels', (req, res, next) => {
+router.get('/getAllTrips', (req, res, next) => {
 
     Trips.find()
         .then(response => res.json(response))
@@ -25,7 +25,7 @@ router.get('/getDestination/:destination', (req, res, next) => {
 
 
 // Pagina detalles Tripss 
-router.get('/getOneTravel/:Trips_id', (req, res, next) => {
+router.get('/getOneTrip/:Trips_id', (req, res, next) => {
 
     Trips.findById(req.params.Trips_id)
         .then(response => res.json(response))
@@ -34,7 +34,7 @@ router.get('/getOneTravel/:Trips_id', (req, res, next) => {
 
 
 //Crea nuevo Trips
-router.post('/newTravel', (req, res, next) => {
+router.post('/newTrip', (req, res, next) => {
     Trips.create(req.body)
         .then(response => res.json(response))
         .catch(err => next(err))

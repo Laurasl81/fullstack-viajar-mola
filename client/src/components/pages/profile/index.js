@@ -53,7 +53,7 @@ class Profile extends Component {
 
 
     render() {
-        console.log('props', this.props);
+        //console.log('props', this.props);
         return (
             <Container>
                 <h1>Hola profile</h1>

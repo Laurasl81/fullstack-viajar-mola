@@ -2,59 +2,58 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 const tripsSchema = new Schema({
-    titulo: {
+    title: {
         type: String,
         required: true
     },
-    duracion: {
+    duration: {
         type: Number
     },
-    temporada: {
+    season: {
         type: String
     },
-    precio: {
+    price: {
         type: Number,
         required: true
     },
-    imagenPrincipal: {
+    image: {
+        type: String,
+    },
+    steps: {
+        type: [String],
+    },
+
+    informationTitle: {
         type: String,
         required: true
     },
-    paradas: {
-        type: [String],
+    informationGallery: {
+        type: String,
     },
-    informacion: { 
-        titulo: {
-            type: String,
-            required: true
-        },
-        galeria: {
-            type: String,
-            default:'',
-            required: true
-        },
-        precioIncluye: {
-            type: String,
-            required: true
-        },
-        descripcion: {
-            type: String,
-            required: true
-        }
+    informationPriceIncludes: {
+        type: String,
+        required: true
     },
-    tipoViaje: {
+    informationDescription: {
+        type: String,
+        required: true
+    },
+
+
+    tripType: {
         type: String,
         enum: ['single', 'grupos', 'grupo-reducido']
     },
-    actividadesDestacadas: {
-        type:[{foto: {type: String}, titulo: {type: String}, descripcion: {type: String}
+    activities: {
+        type: [{
+            photo: { type: String }, title: { type: String }, description: { type: String }
         }],
-      
+
     },
-    informacionPais: {
+    informationCountry: {
         type: String
     },
-    destino: {
+    destination: {
         type: String,
         enum: ['europa', 'asia', 'america']
     }

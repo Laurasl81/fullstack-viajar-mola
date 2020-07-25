@@ -6,7 +6,7 @@ export default class Services {
 
     constructor() {
         this.service = axios.create({
-            baseURL: `${process.env.REACT_APP_API_URL}/file`,
+            baseURL: `${process.env.REACT_APP_API_URL}/files`,
             withCredentials: true
         })
     }

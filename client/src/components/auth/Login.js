@@ -38,7 +38,7 @@ class Login extends Component {
             .catch(err => {
                 this.props.handleToast(true, err.response.data.message)
             })
-    }
+     }
 
 
     render() {
@@ -80,4 +80,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default Login

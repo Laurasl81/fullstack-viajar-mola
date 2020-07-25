@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 
 import AuthService from './../service/AuthService'
-import { Switch, Route , Redirect} from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Navigation from './pages/ui/Navbar'
 import Message from './pages/ui/CustomToast'
@@ -11,6 +11,7 @@ import Signup from './auth/Signup'
 import Login from './auth/Login'
 import Home from './pages/home'
 import ProfilePage from './pages/profile'
+import NewTrip from './pages/newtrip'
 
 class App extends Component {
   constructor() {
@@ -27,7 +28,7 @@ class App extends Component {
   }
 
   componentDidMount = () => this.fetchUser()
-  
+
   setTheUser = user => this.setState({ loggedInUser: user }, () => console.log("El estado de App ha cambiado:", this.state))
 
   fetchUser = () => {
@@ -43,21 +44,22 @@ class App extends Component {
     this.setState({ toast: toastCopy })
   }
 
-  render() {  
+  render() {
     return (
       <>
         <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast} />
         <main>
           <Switch>
             <Route exact path="/" render={() => <Home />} />
-            <Route path="/mi-cuenta" render={() => this.state.loggedInUser ? <ProfilePage loggedInUser={this.state.loggedInUser} handleToast={this.handleToast}/> : <Redirect to='/registro' />} />
+            <Route path="/mi-cuenta" render={() => this.state.loggedInUser ? <ProfilePage loggedInUser={this.state.loggedInUser} handleToast={this.handleToast} /> : <Redirect to='/registro' />} />
             <Route path="/registro" render={props => <Signup {...props} setTheUser={this.setTheUser} handleToast={this.handleToast} />} />
             <Route path="/iniciar-sesion" render={props => <Login {...props} setTheUser={this.setTheUser} handleToast={this.handleToast} />} />
+            <Route path="/nuevo-viaje" render={props => <NewTrip {...props} handleToast={this.handleToast} />} />
 
 
           </Switch>
-          <Footer />
         </main>
+        <Footer />
         <Message {...this.state.toast} handleToast={this.handleToast} />
       </>
     )
