@@ -50,9 +50,7 @@ const tripsSchema = new Schema({
         }],
 
     },
-    informationCountry: {
-        type: String
-    },
+   
     destination: {
         type: String,
         enum: ['europa', 'asia', 'america']
