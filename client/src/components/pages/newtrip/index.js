@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import TripService from '../../../service/TripService'
 import FilesService from '../../../service/FilesService'
-import { Container, Button, Modal, Form } from 'react-bootstrap';
+import ActivitiesCard from '../../cards/ActivitiesCard'
+import { Container, Button, Modal, Form, Col, Row } from 'react-bootstrap';
 
 
 
@@ -45,6 +46,10 @@ class NewTrip extends Component {
         const { name, value } = e.target
         if (name === "inputSteps") {
             this.setState({ inputSteps: value })
+
+        } else if (name === "activityTitle" || name === "activityDescription") {
+            this.setState({ inputActivities: { ...this.state.inputActivities, [name]: value } })
+
         } else {
 
             this.setState({ trip: { ...this.state.trip, [name]: value } })
@@ -63,6 +68,10 @@ class NewTrip extends Component {
                 console.log('Subida de archivo finalizada! La URL de Cloudinray es: ', response.data.secure_url)
                 if (type === "gallery") {
                     this.setState({ trip: { ...this.state.trip, informationGallery: response.data.secure_url } })
+
+                } else if (type === "photo") {
+                    this.setState({ inputActivities: { ...this.state.inputActivities, activityPhoto: response.data.secure_url } })
+
                 } else {
                     this.setState({ trip: { ...this.state.trip, image: response.data.secure_url } })
                 }
@@ -99,6 +108,29 @@ class NewTrip extends Component {
         const stepsCopy = [...this.state.trip.steps]
         stepsCopy.splice(idx, 1)
         this.setState({ trip: { ...this.state.trip, steps: stepsCopy } })
+    }
+
+    addActivities = () => {
+        if (this.state.inputActivities.activityPhoto && this.state.inputActivities.activityTitle && this.state.inputActivities.activityDescription) {
+            const activitiesCopy = [...this.state.trip.activities]
+            activitiesCopy.push(this.state.inputActivities)
+            this.setState({ trip: { ...this.state.trip, activities: activitiesCopy } })
+            this.setState({
+                inputActivities: {
+                    activityPhoto: '',
+                    activityTitle: '',
+                    activityDescription: ''
+                }
+            })
+            this.handleModal(false)
+        }
+    }
+
+    deleteActivities = idx => {
+
+        const activitiesCopy = [...this.state.trip.activities]
+        activitiesCopy.splice(idx, 1)
+        this.setState({ trip: { ...this.state.trip, activities: activitiesCopy } })
     }
 
     //vacia el formulario
@@ -208,8 +240,16 @@ class NewTrip extends Component {
                         {this.state.trip.steps.map((elm, idx) => <Button variant="outline-secondary" className='mr-3' key={idx} onClick={() => this.deleteStep(idx)}> {elm} </Button>)}
                     </div>
 
-                    <Button className="mb-3 d-block" onClick={() => this.handleModal(true)} variant="dark" size="sm" style={{ marginBottom: '20px' }}>Añadir actividad</Button>
+                    <Button className="mb-3 d-block" onClick={() => this.handleModal(true)} variant="dark" size="sm" style={{ marginBottom: '20px' }}>Crear actividad</Button>
 
+                    <Row>
+                        {this.state.trip.activities.map((elm, idx) =>
+                            <Col md={4}>
+                                <ActivitiesCard key={idx} {...elm} />
+                                <Button variant="danger" className='mr-3' onClick={() => this.deleteActivities(idx)}>Eliminar actividad</Button>
+                            </Col>
+                        )}
+                    </Row>
 
                     <Button variant="dark" className='mt-3' type="submit">Crear Viaje</Button>
                 </Form>
@@ -229,8 +269,10 @@ class NewTrip extends Component {
 
                         <Form.Group>
                             <Form.Label>Imagen de la actividad</Form.Label>
-                            <Form.Control name="activityPhoto" type="file" onChange={(e) => this.handleFileUpload(e, 'gallery')} />
+                            <Form.Control name="activityPhototrip" type="file" onChange={(e) => this.handleFileUpload(e, 'photo')} />
                         </Form.Group>
+
+                        <Button className="mb-3 d-block" onClick={this.addActivities} variant="dark" size="sm" style={{ marginBottom: '20px' }}>Añadir actividad</Button>
 
                     </Modal.Body>
                 </Modal>

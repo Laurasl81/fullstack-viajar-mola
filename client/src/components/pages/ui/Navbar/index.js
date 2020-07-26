@@ -23,6 +23,8 @@ class Navigation extends Component {
 
 
     render() {
+
+
         return (
             <Navbar className="nav-hero" variant="dark" expand="lg" sticky="top">
                 <Navbar.Brand>
@@ -56,12 +58,12 @@ class Navigation extends Component {
                         {this.props.loggedInUser ?
                             (
                                 <>
-                                <Nav.Link as="span">
-                                    <NavLink to="/mi-cuenta" activeStyle={{ color: 'white' }}>Mi cuenta</NavLink>
-                                </Nav.Link>
-                                <Nav.Link as="span">
-                                    <span onClick={this.logout}>Cerrar sesión</span>
-                                </Nav.Link>
+                                    <Nav.Link as="span">
+                                        <NavLink to="/mi-cuenta" activeStyle={{ color: 'white' }}>Mi cuenta</NavLink>
+                                    </Nav.Link>
+                                    <Nav.Link as="span">
+                                        <span onClick={this.logout}>Cerrar sesión</span>
+                                    </Nav.Link>
                                 </>
                             ) : (
                                 <>
@@ -74,9 +76,17 @@ class Navigation extends Component {
                                 </>
                             )
                         }
-                        <Nav.Link as="span">
-                            <NavLink to="/mi-cuenta" activeStyle={{ color: 'white' }}>Hola, {this.props.loggedInUser ? this.props.loggedInUser.email : 'invitado'}</NavLink>
-                        </Nav.Link>
+                        {this.props.loggedInUser && this.props.loggedInUser.role === "admin" ?
+                            (
+                                <Nav.Link as="span">
+                                    <NavLink to="/nuevo-viaje" activeStyle={{ color: 'white' }}>Nuevo viaje</NavLink>
+                                </Nav.Link>
+                            ) : null}
+
+
+
+
+
                     </Nav>
 
                 </Navbar.Collapse>

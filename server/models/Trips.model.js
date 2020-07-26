@@ -46,7 +46,7 @@ const tripsSchema = new Schema({
     },
     activities: {
         type: [{
-            photo: { type: String }, title: { type: String }, description: { type: String }
+            activityPhoto: { type: String }, activityTitle: { type: String }, activityDescription: { type: String }
         }],
 
     },
