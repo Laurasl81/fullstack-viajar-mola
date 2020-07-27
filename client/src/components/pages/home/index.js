@@ -56,10 +56,9 @@ class Home extends Component {
 
     render() {
 
-        console.log('hola home', this.state.trips);
         return (
             <>
-                <div className='home-hero'>
+                <div className='home-hero' >
                     <h1 className="text-center">Hora de desconectar de la rutina. No hay problema, nosotros nos encargamos de todo. </h1>
                 </div>
 
@@ -95,8 +94,8 @@ class Home extends Component {
 
                     <Row>
                         {this.state.trips.map((elm, idx) =>
-                            <Col md={6} lg={4}>
-                                <TripsCard key={idx} {...elm} />
+                            <Col md={6} lg={4} key={idx} >
+                                <TripsCard {...elm} />
                             </Col>
 
                         )}

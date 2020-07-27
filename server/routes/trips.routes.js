@@ -18,9 +18,9 @@ router.get('/getAllTrips', (req, res, next) => {
 
 router.get('/getDestination/:destination', (req, res, next) => {
 
-    Trips.find({ "destino": req.params.destination})
-    .then(response => res.json(response))
-    .catch(err => next(err))
+    Trips.find({ "destination": req.params.destination })
+        .then(response => res.json(response))
+        .catch(err => next(err))
 })
 
 
