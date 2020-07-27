@@ -1,0 +1,47 @@
+.home-hero{
+    height: 500px;
+    background-image: url('/img/viajarmola.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.home-hero h1{
+    color: #093643;
+  font-family: 'Playfair Display', serif;
+    margin: 10px 40px;
+    text-shadow: 0 0 5px #ffffff;
+}
+
+.img-card{
+  height: 200px;
+  object-fit: cover;
+  
+}
+
+.trip-card{
+  margin-bottom: 20px;
+  color: #093643
+}
+
+.texto-parrafo{
+  padding: 40px 40px;
+ background-color: #e2d7dc;
+ color: #093643;
+}
+.subtitle{
+  text-transform: uppercase;
+  margin: 2rem 0 1rem 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.diferentes{
+ padding: 40px 40px;
+ background-color: #e2d7dc;
+ color: #093643;
+ text-align: center;
+}

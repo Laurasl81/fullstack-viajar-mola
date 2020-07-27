@@ -225,7 +225,7 @@ class NewTrip extends Component {
                             <option value="">Selecciona un destino</option>
                             <option value="europa">Europa</option>
                             <option value="asia">Asia</option>
-                            <option value="america">America</option>
+                            <option value="america">América</option>
                         </Form.Control>
                     </Form.Group>
 

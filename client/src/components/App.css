@@ -2,6 +2,18 @@ body{
  background-color: #F5F5F5;
 }
 
+img{
+  max-width: 100%;
+}
+h1, h2, h3 {
+  font-family: 'Mulish', serif;
+  color: #093643;
+}
+ h4, h5, h6,p{
+font-family: 'Mulish', sans-serif;
+font-size: 1.2rem;
+color: #093643;
+ }
 main{
   min-height: 400px;
 }
