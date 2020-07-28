@@ -13,6 +13,7 @@ import Home from './pages/home'
 import ProfilePage from './pages/profile'
 import NewTrip from './pages/newtrip'
 import Destination from './pages/destination'
+import TripDetails from './pages/details/index'
 
 class App extends Component {
   constructor() {
@@ -57,6 +58,8 @@ class App extends Component {
             <Route path="/iniciar-sesion" render={props => <Login {...props} setTheUser={this.setTheUser} handleToast={this.handleToast} />} />
             <Route path="/nuevo-viaje" render={props => this.state.loggedInUser && this.state.loggedInUser.role === "admin" ? <NewTrip {...props} handleToast={this.handleToast} /> : <Redirect to='/' />} />
             <Route path="/destino/:destino_id" render={props => <Destination {...props} />} />
+            <Route path="/viaje/:trips_id" render={props => <TripDetails handleToast={this.handleToast} loggedInUser={this.state.loggedInUser} {...props} />} />
+
 
 
           </Switch>

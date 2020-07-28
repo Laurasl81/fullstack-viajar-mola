@@ -25,9 +25,9 @@ router.get('/getDestination/:destination', (req, res, next) => {
 
 
 // Pagina detalles Tripss 
-router.get('/getOneTrip/:Trips_id', (req, res, next) => {
+router.get('/getOneTrip/:trips_id', (req, res, next) => {
 
-    Trips.findById(req.params.Trips_id)
+    Trips.findById(req.params.trips_id)
         .then(response => res.json(response))
         .catch(err => next(err))
 })

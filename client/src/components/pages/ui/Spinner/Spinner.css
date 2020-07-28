@@ -3,6 +3,7 @@
   height: 40px;
   position: relative;
   animation: sk-chase 2.5s infinite linear both;
+  margin: 2rem auto;
 }
 
 .sk-chase-dot {

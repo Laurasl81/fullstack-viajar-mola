@@ -7,8 +7,8 @@ const ActivitiesCard = ({ activityPhoto, activityTitle, activityDescription }) =
 
 
     return (
-        <Card>
-            <Card.Img variant="top" src={activityPhoto}/>
+        <Card className="mb-4">
+            <Card.Img variant="top" src={activityPhoto} className="img-card" />
             <Card.Body>
                 <Card.Title>{activityTitle}</Card.Title>
                 <Card.Text>{activityDescription}</Card.Text>

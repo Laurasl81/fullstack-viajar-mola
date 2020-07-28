@@ -36,9 +36,6 @@ class Navigation extends Component {
                         <Nav.Link as="span">
                             <NavLink to="/" exact activeStyle={{ color: 'white' }}>Inicio</NavLink>
                         </Nav.Link>
-                        <Nav.Link as="span">
-                            <NavLink to="/destino" activeStyle={{ color: 'white' }}>Destino</NavLink>
-                        </Nav.Link>
                         <NavDropdown title="Destinos" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/destino/europa">Europa</NavDropdown.Item>
                             <NavDropdown.Divider />
