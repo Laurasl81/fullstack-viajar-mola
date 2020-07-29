@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import UserService from '../../../service/UserService'
+import TripsCard from '../../cards/TripsCard'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+
 
 class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            userWithBooking: null,
             user: {
                 email: '',
                 phone: '',
@@ -20,7 +23,7 @@ class Profile extends Component {
     }
 
     componentDidMount = () => {
-        console.log(this.props)
+        this.getUser()
         this.props.loggedInUser && this.setState({
             ...this.state, user: {
                 email: this.props.loggedInUser.email ? this.props.loggedInUser.email : '',
@@ -29,9 +32,7 @@ class Profile extends Component {
                 lastname: this.props.loggedInUser.lastname ? this.props.loggedInUser.lastname : ''
 
             }
-
         })
-
     }
 
     handleInputChange = e => {
@@ -40,7 +41,7 @@ class Profile extends Component {
     }
 
     handleFormSubmit = e => {
-        console.log(this.state);
+        //console.log(this.state);
         e.preventDefault()
         this.UserService.editUser(this.props.loggedInUser._id, this.state.user)
             .then(response => {
@@ -52,14 +53,36 @@ class Profile extends Component {
 
     }
 
+    getUser = () => {
+        this.UserService
+            .getUser(this.props.loggedInUser._id)
+            .then(response => this.setState({ userWithBooking: response.data }))
+            .catch(err => console.log(err))
+
+    }
+
+    deleteBooking = (idx) => {
+        const copyBooking = this.state.userWithBooking.booking
+        copyBooking.splice(idx, 1)
+        this.UserService.editUser(this.props.loggedInUser._id, { booking: copyBooking })
+            .then(() => this.getUser())
+            .then(() => {
+                this.props.handleToast(true, 'Reserva eliminada')
+            })
+            .catch(err => console.log(err))
+
+    }
+
+
 
     render() {
-        //console.log('props', this.props);
+        //console.log('props', this.state.userWithBooking);
+
         return (
             <Container>
-                <h1>Hola profile</h1>
+                <h1>Tu Perfil</h1>
 
-                <Form onSubmit={this.handleFormSubmit}>
+                <Form onSubmit={this.handleFormSubmit} style={{ maxWidth: 400, margin: 'auto' }}>
 
 
                     <Form.Group>
@@ -73,7 +96,7 @@ class Profile extends Component {
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label>Nombre</Form.Label>
                         <Form.Control onChange={this.handleInputChange} value={this.state.user.name} name="name" type="text" />
                     </Form.Group>
 
@@ -82,9 +105,36 @@ class Profile extends Component {
                         <Form.Control onChange={this.handleInputChange} value={this.state.user.lastname} name="lastname" type="text" />
                     </Form.Group>
 
-                    <Button variant="dark" type="submit">Editar usuario</Button>
+                    <Button variant="dark" block type="submit">Editar usuario</Button>
                 </Form>
+
+
+
+                {this.props.loggedInUser && this.props.loggedInUser.role === "cliente" ?
+                    (
+                        <>
+                            <h2> Reservas</h2>
+                            {!this.state.userWithBooking ? <h3>CARGANDO</h3> :
+
+                                <Row>
+                                    {this.state.userWithBooking.booking.map((elm, idx) =>
+
+                                        <Col key={elm._id} xs={12} md={4} lg={3}>
+                                            <TripsCard  {...elm.trip[0]} />
+                                            <Button variant="danger" className='mr-3' onClick={() => this.deleteBooking(idx)}>Eliminar viaje</Button>
+
+                                        </Col>
+                                    )}
+                                </Row>
+                            }
+
+                        </>
+                    ) : null}
+
+
             </Container>
+
+
 
         );
     }

@@ -24,7 +24,7 @@ router.get('/getDestination/:destination', (req, res, next) => {
 })
 
 
-// Pagina detalles Tripss 
+// Pagina detalles Trips
 router.get('/getOneTrip/:trips_id', (req, res, next) => {
 
     Trips.findById(req.params.trips_id)

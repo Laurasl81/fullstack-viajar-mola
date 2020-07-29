@@ -8,9 +8,7 @@ module.exports = app => {
   app.use('/api/files', require('./files.routes'))
   app.use('/api/booking', require('./booking.routes'))
 
-  // app.use('/movies', require('./movies.routes'))
-  // app.use('/movies/details/:id', require('./movies.routes.js'))
-  // app.use('/profile', require('./user.routes'))
+
   //database
 
 

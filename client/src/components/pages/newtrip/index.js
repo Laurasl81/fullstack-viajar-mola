@@ -57,7 +57,7 @@ class NewTrip extends Component {
 
     }
 
-
+//Imagenes subidas cloudinary
     handleFileUpload = (e, type) => {
 
         const uploadData = new FormData()
@@ -79,8 +79,6 @@ class NewTrip extends Component {
             .catch(err => console.log(err))
     }
 
-
-
     handleFormSubmit = e => {
         //console.log(this.state);
         e.preventDefault()
@@ -95,6 +93,7 @@ class NewTrip extends Component {
             })
     }
 
+    //Añadir paradas al viaje
     addTripSteps = () => {
         const stepsCopy = [...this.state.trip.steps]
         stepsCopy.push(this.state.inputSteps)
@@ -104,12 +103,14 @@ class NewTrip extends Component {
         })
     }
 
+    //Eliminar parada
     deleteStep = idx => {
         const stepsCopy = [...this.state.trip.steps]
         stepsCopy.splice(idx, 1)
         this.setState({ trip: { ...this.state.trip, steps: stepsCopy } })
     }
 
+    //Añadir actividades
     addActivities = () => {
         if (this.state.inputActivities.activityPhoto && this.state.inputActivities.activityTitle && this.state.inputActivities.activityDescription) {
             const activitiesCopy = [...this.state.trip.activities]
@@ -126,6 +127,7 @@ class NewTrip extends Component {
         }
     }
 
+    //Eliminar actividad
     deleteActivities = idx => {
 
         const activitiesCopy = [...this.state.trip.activities]
@@ -157,8 +159,7 @@ class NewTrip extends Component {
 
 
     render() {
-        console.log(this.state);
-
+        
         return (
             <Container className='my-5'>
                 <h1>Viaje</h1>
@@ -244,8 +245,8 @@ class NewTrip extends Component {
 
                     <Row>
                         {this.state.trip.activities.map((elm, idx) =>
-                            <Col md={4}>
-                                <ActivitiesCard key={idx} {...elm} />
+                            <Col key={idx} md={4}>
+                                <ActivitiesCard  {...elm} />
                                 <Button variant="danger" className='mr-3' onClick={() => this.deleteActivities(idx)}>Eliminar actividad</Button>
                             </Col>
                         )}

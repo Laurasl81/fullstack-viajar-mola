@@ -1,14 +1,14 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const reservasSchema = new Schema({
+const bookingsSchema = new Schema({
 
     user: [{type: Schema.Types.ObjectId, ref: 'User'}],
-    trip: [{type: Schema.Types.ObjectId, ref:'Viajes'}]
+    trip: [{type: Schema.Types.ObjectId, ref:'Viaje'}]
 
 }, {
     timestamps: true
 })
 
-const Reservas = mongoose.model('Reservas', reservasSchema);
+const Reservas = mongoose.model('Reservas', bookingsSchema);
 module.exports = Reservas;

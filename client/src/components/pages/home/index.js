@@ -45,7 +45,7 @@ class Home extends Component {
 
     handleInputChange = e => {
         const { name, value } = e.target
-        console.log(name, value);
+        //console.log(name, value);
         // Callback para esperar que el estado se actualice
         if (name === "destinyFilter") this.setState({ [name]: value }, () => this.destinyFilter())
         if (name === "priceFilter") this.setState({ [name]: value }, () => this.priceFilter())

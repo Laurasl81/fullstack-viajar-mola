@@ -22,7 +22,6 @@ class TripDetails extends Component {
 
 
     componentDidMount = () => {
-
         const id = this.props.match.params.trips_id
 
         this.TripService
@@ -63,9 +62,7 @@ class TripDetails extends Component {
                                 <ul>
                                     {newText ? newText.map((elm, idx) => (<li key={idx}>{elm}.</li>)) : null}
                                 </ul>
-
                             </div>
-
                         </Container>
                         <div className='actividades my-5'>
                             <h2>ACTIVIDADES DESTACADAS</h2>
@@ -75,7 +72,6 @@ class TripDetails extends Component {
                                     <Col md={6} lg={4} key={idx} >
                                         <ActivitiesCard {...elm} />
                                     </Col>
-
                                 )}
                             </Row>
                         </div>
@@ -84,16 +80,12 @@ class TripDetails extends Component {
                 <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
 
                     <Modal.Body>
-                        <BookingForm handleToast={this.props.handleToast} handleModal={this.handleModal} loggedInUser={this.props.loggedInUser} tripId={this.state.tripDetails && this.state.tripDetails._id} />
+                        <BookingForm fetchUser={this.props.fetchUser} handleToast={this.props.handleToast} handleModal={this.handleModal} loggedInUser={this.props.loggedInUser} tripId={this.state.tripDetails && this.state.tripDetails._id} />
 
                     </Modal.Body>
 
                 </Modal>
-
-
-
             </>
-
         )
     }
 }

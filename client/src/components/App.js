@@ -15,6 +15,7 @@ import NewTrip from './pages/newtrip'
 import Destination from './pages/destination'
 import TripDetails from './pages/details/index'
 
+
 class App extends Component {
   constructor() {
     super()
@@ -36,7 +37,7 @@ class App extends Component {
   fetchUser = () => {
     this.AuthService
       .isLoggedIn()
-      .then(response => this.state.loggedInUser === null && this.setState({ loggedInUser: response.data }))
+      .then(response => this.setState({ loggedInUser: response.data }))
       .catch(err => console.log({ err }))
   }
 
@@ -54,11 +55,13 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render={() => <Home />} />
             <Route path="/mi-cuenta" render={() => this.state.loggedInUser ? <ProfilePage loggedInUser={this.state.loggedInUser} handleToast={this.handleToast} /> : <Redirect to='/registro' />} />
+
+
             <Route path="/registro" render={props => <Signup {...props} setTheUser={this.setTheUser} handleToast={this.handleToast} />} />
             <Route path="/iniciar-sesion" render={props => <Login {...props} setTheUser={this.setTheUser} handleToast={this.handleToast} />} />
             <Route path="/nuevo-viaje" render={props => this.state.loggedInUser && this.state.loggedInUser.role === "admin" ? <NewTrip {...props} handleToast={this.handleToast} /> : <Redirect to='/' />} />
             <Route path="/destino/:destino_id" render={props => <Destination {...props} />} />
-            <Route path="/viaje/:trips_id" render={props => <TripDetails handleToast={this.handleToast} loggedInUser={this.state.loggedInUser} {...props} />} />
+            <Route path="/viaje/:trips_id" render={props => <TripDetails handleToast={this.handleToast} loggedInUser={this.state.loggedInUser} fetchUser={this.fetchUser} {...props} />} />
 
 
 

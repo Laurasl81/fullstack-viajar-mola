@@ -51,18 +51,27 @@ class BookingForm extends Component {
             .then(response => {
                 const userCopy = this.props.loggedInUser.booking
                 userCopy.push(response.data._id)
-                this.UserService.editUser(this.props.loggedInUser._id, { booking: userCopy })
+                this.UserService.editUser(this.props.loggedInUser._id, 
+                    { booking: userCopy, 
+                    email: this.state.user.email, 
+                    phone: this.state.user.phone, 
+                    name: this.state.user.name, 
+                    lastname: this.state.user.lastname
+                })
+                .then(() => this.props.fetchUser())
             })
             .catch(err => this.setState({ error: err }))
+
+       
         this.props.handleModal(false)
         this.props.handleToast(true, "Tu viaje ha sido reservado")
     }
 
     render() {
-        console.log(this.props);
+        //console.log(this.props);
         return (
             <>
-                <h1>Hola!!!!</h1>
+                <h1>Formulario de Reserva</h1>
 
                 <Form onSubmit={this.handleFormSubmit}>
 

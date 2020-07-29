@@ -4,9 +4,11 @@ const router = express.Router()
 const User = require("../models/User.model")
 
 
+
 router.get('/account/:id', (req, res, next) => {
 
     User.findById(req.params.id)
+        .populate({ path: 'booking', model: 'Reservas', populate: { path: 'trip' } })
         .then(response => res.json(response))
         .catch(err => next(err))
 })
