@@ -46,11 +46,11 @@ class Login extends Component {
         //console.log('PROPS Login', this.props);
         return (
             <>
-                <Container>
+                <Container className="mt-5">
 
                     <Row>
                         <Col md={{ offset: 3, span: 6 }}>
-                            <h3>Inicio de sesión</h3>
+                            <h3 className="mb-3">Inicio de sesión</h3>
 
                             <Form onSubmit={this.handleFormSubmit}>
 

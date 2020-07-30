@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './destination.css'
 
 import { Row, Col, Button } from 'react-bootstrap';
-
+import Aside from '../ui/Aside/aside'
 import TripService from '../../../service/TripService'
 import TripsCard from '../../cards/TripsCard'
 
@@ -21,7 +21,9 @@ class Destination extends Component {
     }
 
 
-    componentDidMount = () => this.getDestination()
+    componentDidMount = () => {
+        this.getDestination()
+        window.scrollTo(0, 0)}
 
 
     getDestination = () => {
@@ -58,13 +60,15 @@ class Destination extends Component {
                             <TripsCard {...elm} />
                 {this.props.loggedInUser && this.props.loggedInUser.role === "admin" ?
                 ( 
-                            <Button variant="danger" className='mr-3 mb-3' onClick={() => this.deleteTrips(elm._id)}>Eliminar viaje</Button>
+                    
+                            <Button variant="danger" className='mb-5 mr-5' onClick={() => this.deleteTrips(elm._id)} >Eliminar viaje</Button>
 
                  ) : null} 
                         </Col>
 
                     )}
                 </Row>
+                <Aside />
 
             </>
         )

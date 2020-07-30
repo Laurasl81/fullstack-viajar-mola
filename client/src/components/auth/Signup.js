@@ -42,11 +42,11 @@ class Signup extends Component {
 
     render() {
         return (
-            <Container>
+            <Container className="mt-5">
 
                 <Row>
                     <Col md={{ offset: 3, span: 6 }}>
-                        <h3>Registro de usuario</h3>
+                        <h3 className="mb-3">Registro de usuario</h3>
 
                         <Form onSubmit={this.handleFormSubmit}>
 

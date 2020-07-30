@@ -16,8 +16,6 @@
     text-shadow: 0 0 5px #ffffff;
 }
 
-
-
 .trip-card{
   margin-bottom: 20px;
   color: #093643
@@ -27,6 +25,7 @@
   padding: 40px 40px;
  background-color: #e2d7dc;
  color: #093643;
+ 
 }
 .subtitle{
   text-transform: uppercase;

@@ -22,6 +22,7 @@ class TripDetails extends Component {
 
 
     componentDidMount = () => {
+        window.scrollTo(0, 0)
         const id = this.props.match.params.trips_id
 
         this.TripService
@@ -32,7 +33,7 @@ class TripDetails extends Component {
 
     handleModal = status => this.setState({ showModal: status })
 
-    
+
 
     render() {
         const newText = this.state.tripDetails && this.state.tripDetails.informationPriceIncludes.split('.')
