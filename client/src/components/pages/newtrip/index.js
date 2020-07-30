@@ -162,7 +162,7 @@ class NewTrip extends Component {
         
         return (
             <Container className='my-5'>
-                <h1>Viaje</h1>
+                <h1>Viaje nuevo</h1>
 
                 <Form onSubmit={this.handleFormSubmit}>
 
@@ -195,10 +195,10 @@ class NewTrip extends Component {
                         <Form.Label>Titulo información</Form.Label>
                         <Form.Control onChange={this.handleInputChange} value={this.state.trip.informationTitle} name="informationTitle" type="text" />
                     </Form.Group>
-                    <Form.Group>
+                    {/* <Form.Group>
                         <Form.Label>Imagen de información</Form.Label>
                         <Form.Control name="informationGallery" type="file" onChange={(e) => this.handleFileUpload(e, 'gallery')} />
-                    </Form.Group>
+                    </Form.Group> */}
 
                     <Form.Group>
                         <Form.Label>¿Qué incluye el precio?</Form.Label>

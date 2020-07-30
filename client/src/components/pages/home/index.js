@@ -12,7 +12,8 @@ class Home extends Component {
             originTrips: [],
             trips: [],
             destinyFilter: '',
-            priceFilter: 0
+            priceFilter: 0,
+            tripTypeFilter: ''
         }
         this.TripService = new TripService()
     }
@@ -27,7 +28,7 @@ class Home extends Component {
 
     resetFilter = () => {
 
-        this.setState({ trips: this.state.originTrips, destinyFilter: '', priceFilter: 0 })
+        this.setState({ trips: this.state.originTrips, destinyFilter: '', priceFilter: 0, tripTypeFilter: '' })
     }
 
 
@@ -43,13 +44,20 @@ class Home extends Component {
         this.setState({ trips: newPrice })
     }
 
+
+    tripTypeFilter = () => {
+        const tripsCopy = [...this.state.trips]
+        const newTrip = tripsCopy.filter(trip => trip.tripType === this.state.tripTypeFilter)
+        this.setState({ trips: newTrip })
+    }
+
     handleInputChange = e => {
         const { name, value } = e.target
         //console.log(name, value);
         // Callback para esperar que el estado se actualice
         if (name === "destinyFilter") this.setState({ [name]: value }, () => this.destinyFilter())
         if (name === "priceFilter") this.setState({ [name]: value }, () => this.priceFilter())
-
+        if (name === "tripTypeFilter") this.setState({ [name]: value }, () => this.tripTypeFilter())
 
     }
 
@@ -88,7 +96,18 @@ class Home extends Component {
                         </Col>
 
                         <Col lg={4}>
-                            <Button block onClick={() => this.resetFilter()} variant="outline-dark" type="submit">Mostrar todos los viajes</Button>
+                            <Form.Group>
+                                <Form.Control as="select" onChange={this.handleInputChange} value={this.state.tripTypeFilter} name="tripTypeFilter" >
+                                    <option value="">Selecciona tipo de viaje</option>
+                                    <option value="single">Single</option>
+                                    <option value="grupos">Grupos</option>
+                                    <option value="grupo-reducido">Grupos reducidos</option>
+                                </Form.Control>
+                            </Form.Group>
+                        </Col>
+
+                        <Col lg={4}>
+                            <Button block onClick={() => this.resetFilter()} variant="outline-dark" type="submit">Quitar filtro viajes</Button>
                         </Col>
                     </Row>
 

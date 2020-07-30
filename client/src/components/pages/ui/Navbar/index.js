@@ -28,7 +28,7 @@ class Navigation extends Component {
         return (
             <Navbar className="nav-hero" variant="dark" expand="lg" sticky="top">
                 <Navbar.Brand>
-                    <Link to="/"><img className='logo' src="/img/image.png" alt="#" /></Link>
+                    <Link to="/"><img className='logo' src="/img/logo.png" alt="#" /></Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

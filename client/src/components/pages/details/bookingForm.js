@@ -25,14 +25,15 @@ class BookingForm extends Component {
     componentDidMount = () => {
         this.props.loggedInUser && this.setState({
             ...this.state, user: {
-                email: this.props.loggedInUser.email ? this.props.loggedInUser.email : '',
-                phone: this.props.loggedInUser.phone ? this.props.loggedInUser.phone : '',
-                name: this.props.loggedInUser.name ? this.props.loggedInUser.name : '',
-                lastname: this.props.loggedInUser.lastname ? this.props.loggedInUser.lastname : ''
+                email: this.props.loggedInUser.email || '',
+                phone: this.props.loggedInUser.phone || '',
+                name: this.props.loggedInUser.name || '',
+                lastname: this.props.loggedInUser.lastname || '',
             }
         })
 
     }
+
 
     handleInputChange = e => {
         this.setState({ error: "" })
@@ -45,26 +46,29 @@ class BookingForm extends Component {
         e.preventDefault()
         if (!this.state.user.email || !this.state.user.phone || !this.state.user.name || !this.state.user.lastname) {
             this.setState({ error: "Todos los campos son obligatorios" })
-        }
-        this.BookingService
-            .createTrips({ user: this.props.loggedInUser._id, trip: this.props.tripId })
-            .then(response => {
-                const userCopy = this.props.loggedInUser.booking
-                userCopy.push(response.data._id)
-                this.UserService.editUser(this.props.loggedInUser._id, 
-                    { booking: userCopy, 
-                    email: this.state.user.email, 
-                    phone: this.state.user.phone, 
-                    name: this.state.user.name, 
-                    lastname: this.state.user.lastname
-                })
-                .then(() => this.props.fetchUser())
-            })
-            .catch(err => this.setState({ error: err }))
+        } else{
 
-       
-        this.props.handleModal(false)
-        this.props.handleToast(true, "Tu viaje ha sido reservado")
+            this.BookingService
+                .createTrips({ user: this.props.loggedInUser._id, trip: this.props.tripId })
+                .then(response => {
+                    const userCopy = this.props.loggedInUser.booking
+                    userCopy.push(response.data._id)
+                    this.UserService.editUser(this.props.loggedInUser._id,
+                        {
+                            booking: userCopy,
+                            email: this.state.user.email,
+                            phone: this.state.user.phone,
+                            name: this.state.user.name,
+                            lastname: this.state.user.lastname
+                        })
+                        .then(() => this.props.fetchUser())
+                })
+                .catch(err => this.setState({ error: err }))
+    
+    
+            this.props.handleModal(false)
+            this.props.handleToast(true, "Tu viaje ha sido reservado")
+        }
     }
 
     render() {

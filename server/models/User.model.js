@@ -19,10 +19,10 @@ const userSchema = new Schema({
   phone: {
     type: Number
   },
-  favorites: {
-    type: [Schema.Types.ObjectId],
-    ref: 'Viajes'
-  },
+  // favorites: {
+  //   type: [Schema.Types.ObjectId],
+  //   ref: 'Viajes'
+  // },
   booking: {
     type: [Schema.Types.ObjectId],
     ref: 'Reservas'

@@ -12,3 +12,8 @@
     text-transform: uppercase;
     text-shadow: 0 0 5px #ffffff;
 }
+
+Button{
+    width: 50%;
+    display: flex;
+}

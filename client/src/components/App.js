@@ -60,7 +60,7 @@ class App extends Component {
             <Route path="/registro" render={props => <Signup {...props} setTheUser={this.setTheUser} handleToast={this.handleToast} />} />
             <Route path="/iniciar-sesion" render={props => <Login {...props} setTheUser={this.setTheUser} handleToast={this.handleToast} />} />
             <Route path="/nuevo-viaje" render={props => this.state.loggedInUser && this.state.loggedInUser.role === "admin" ? <NewTrip {...props} handleToast={this.handleToast} /> : <Redirect to='/' />} />
-            <Route path="/destino/:destino_id" render={props => <Destination {...props} />} />
+            <Route path="/destino/:destino_id" render={props => <Destination {...props} loggedInUser={this.state.loggedInUser}/>} />
             <Route path="/viaje/:trips_id" render={props => <TripDetails handleToast={this.handleToast} loggedInUser={this.state.loggedInUser} fetchUser={this.fetchUser} {...props} />} />
 
 

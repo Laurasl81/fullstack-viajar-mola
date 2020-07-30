@@ -44,8 +44,8 @@ router.post('/newTrip', (req, res, next) => {
 //Borrar Trips
 router.delete('/delete/:id', (req, res, next) => {
 
-    Trips.findOneAndRemove(req.params.id)
-        .then(response => res.json(response))
+    Trips.findByIdAndDelete(req.params.id)
+        .then(() => res.json({message: "Viaje borrado"}))
         .catch(err => next(err))
 })
 
