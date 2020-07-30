@@ -111,8 +111,8 @@ class Home extends Component {
                         </Col>
 
 
-                        <Col lg={3}>
-                            <Button block onClick={() => this.resetFilter()} variant="outline-dark" type="submit" >Quitar filtro viajes</Button>
+                        <Col className='d-flex justify-content-center'>
+                            <Button onClick={() => this.resetFilter()} variant="outline-dark" type="submit" >Quitar filtro viajes</Button>
                         </Col>
                     </Row>
 
