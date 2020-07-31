@@ -37,11 +37,11 @@ class Navigation extends Component {
                             <NavLink to="/" exact activeStyle={{ color: 'white' }}>Inicio</NavLink>
                         </Nav.Link>
                         <NavDropdown title="Destinos" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/destino/europa">Europa</NavDropdown.Item>
+                            <Link style={{ paddingLeft: 20 }} to="/destino/europa">Europa</Link>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="/destino/asia">Asia</NavDropdown.Item>
+                            <Link style={{ paddingLeft: 20 }} to="/destino/asia">Asia</Link>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="/destino/america">America</NavDropdown.Item>
+                            <Link style={{ paddingLeft: 20 }} to="/destino/america">America</Link>
                         </NavDropdown>
                         <Nav.Link as="span">
                             <NavLink to="/#" exact >Sobre Nosotros</NavLink>

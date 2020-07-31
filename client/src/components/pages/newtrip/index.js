@@ -238,7 +238,7 @@ class NewTrip extends Component {
                         </div>
                     </Form.Group>
                     <div>
-                        {this.state.trip.steps.map((elm, idx) => <Button variant="outline-secondary" className='mr-3' key={idx} onClick={() => this.deleteStep(idx)}> {elm} </Button>)}
+                        {this.state.trip.steps.map((elm, idx) => <Button variant="outline-secondary" className='mr-3 mb-4' key={idx} onClick={() => this.deleteStep(idx)}> {elm} </Button>)}
                     </div>
 
                     <Button className="mb-3 d-block" onClick={() => this.handleModal(true)} variant="dark" size="sm" style={{ marginBottom: '20px' }}>Crear actividad</Button>
