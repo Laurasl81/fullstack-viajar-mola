@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './destination.css'
+
 
 import { Row, Col, Button } from 'react-bootstrap';
 import Aside from '../ui/Aside/aside'

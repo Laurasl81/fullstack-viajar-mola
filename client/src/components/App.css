@@ -38,3 +38,18 @@ main{
   height: 200px;
   object-fit: cover;
 }
+.continente{
+     height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.continente h1{
+    text-transform: uppercase;
+    text-shadow: 0 0 5px #ffffff;
+}
+
